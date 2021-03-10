@@ -159,7 +159,16 @@
             parseCountry(country)     
          });
         } catch (e) {
-            console.log(e)
+            // console.log(e)
+            country = {
+                flag:'/error.jpg',
+                name:'N/A',
+                population:'N/A',
+                region:'N/A',
+                capital:'N/A'
+            }
+            parseCountry(country)
+            // console.log(country.name)
         }
         }
         
