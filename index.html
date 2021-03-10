@@ -107,7 +107,7 @@
         let form = document.querySelector('form')
         let results = document.createElement('section')
         results.remove()
-
+     
         results.setAttribute('class'," results contain")
         function createElements(element,value){
                let spanFirst = document.createElement('span');
@@ -142,7 +142,7 @@
                let regionParent = createElements('region',region);
                //capital
                let capitalParent = createElements('capital',capital)
-              console.log(header.innerText, capitalParent.innerText)
+            //   console.log(header.innerText, capitalParent.innerText)
               let valueDiv = document.createElement('div')
               valueDiv.append(header,popParent,regionParent,capitalParent)
               valueDiv.setAttribute('class','value-div')
@@ -173,7 +173,6 @@
         }
         
         
-        
         form.addEventListener('submit',function (e) {
             e.preventDefault();
             results.innerHTML = ' '
@@ -184,7 +183,14 @@
             // })
             searchCountry(input);
         })
-        
+        //default search on load
+      async function defaultLoad (){
+        let result = await axios.get('https://restcountries.eu/rest/v2/all')
+        result.data.forEach(data =>{
+            parseCountry(data)
+        })
+      }
+      defaultLoad()
     </script>
 </body>
 </html>
