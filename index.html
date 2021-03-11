@@ -112,9 +112,9 @@
                 <input type="text" name="search" id="search" placeholder="search for a country">
             </form>
             <select name="filterSelect" id="filterSelect">
-               <option value="filterReg">filter By Region</option>
+               <option >filter By Region</option>
                <option value="africa">Africa</option>
-               <option value="america">America</option>
+               <option value="americas">America</option>
                <option value="asia">Asia</option>
                <option value="europe">Europe</option>
                <option value="oceania">Oceania</option>
@@ -129,12 +129,24 @@
         let main = document.querySelector('main')
         let form = document.querySelector('form')
         let dark = document.querySelector('.dark-mode')
+        let selectRegion = document.querySelector('#filterSelect')
+        let results = document.createElement('section')
+        results.remove()
+
+        //search by region
+        selectRegion.addEventListener('change',async function(){
+            let region = this.value;
+            let result = await axios.get(`https://restcountries.eu/rest/v2/region/${region}`)
+            results.innerHTML = ' '
+        result.data.forEach(data =>{
+            parseCountry(data)
+        })
+        })
         // dark.addEventListener('click',()=>{
         //     document.querySelector('nav').classList.toggle('changeBg')
         //     main.classList.toggle('changeBg')
         // })
-        let results = document.createElement('section')
-        results.remove()
+       
      
         results.setAttribute('class'," results contain")
         function createElements(element,value){
@@ -205,15 +217,12 @@
             e.preventDefault();
             results.innerHTML = ' '
             let input = this.querySelector('input').value;
-            // let resultDivs = [...document.querySelectorAll('.results-div')]
-            // resultDivs.forEach(div=>{
-            //     resultDivs.remove()
-            // })
             searchCountry(input);
         })
         //default search on load
       async function defaultLoad (){
         let result = await axios.get('https://restcountries.eu/rest/v2/all')
+        // https://restcountries.eu/rest/v2/region/europe
         result.data.forEach(data =>{
             parseCountry(data)
         })
