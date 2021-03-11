@@ -16,10 +16,18 @@ result.data.forEach(data =>{
 })
 dark.addEventListener('click',(e)=>{
     let icon = dark.querySelector('i');
+    let roots = document.querySelector(':root');
     if(icon.className.includes('far')){
         icon.setAttribute('class','fas fa-moon');
+        document.documentElement.style.setProperty('--light-bg', 'hsl(209, 23%, 22%)');
+        document.documentElement.style.setProperty('--main-bg', 'hsl(207, 26%, 17%)');
+        document.documentElement.style.setProperty('--light-text', 'hsl(0, 0%, 100%)');
     }else{
         icon.setAttribute('class','far fa-moon');
+        document.documentElement.style.setProperty('--light-bg', 'hsl(0, 0%, 98%)');
+        document.documentElement.style.setProperty('--main-bg', 'hsl(0, 0%, 91.8%)');
+        document.documentElement.style.setProperty('--light-text', 'hsl(200, 15%, 8%)');
+
     }
 })
 
