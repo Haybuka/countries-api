@@ -5,106 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        *{
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-            font-family: 'Poppins',sans-serif;
-        }
-        .contain{
-            padding: 15px 40px;
-        }
-        img{
-            width: 100%;
-        }
-        nav{
-            background-color: #fff;
-            box-shadow: 1px 1px 2px rgb(255, 0, 0);
-        }
-
-
-        .changeBg{
-            background-color:hsl(207, 26%, 17%) !important;
-            /* :hsl(209, 23%, 22%)  */
-            color: hsl(0, 0%, 100%) !important;
-        }
-        nav,section{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        section.results{
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        main{
-            background-color:  hsl(0, 0%, 98%) !important;
-            height: 100vh;
-        }
-        h3{
-            font-size: 16px;
-        }
-        p{
-            font-size: 14px;
-        }
-        p.dark-mode{
-            cursor: pointer;
-        }
-        .results-div{
-            border: 1px solid black;
-            border-radius: 5px;
-            margin: 15px;
-            overflow: hidden;
-        }
-        .value-div{
-            padding: 10px 5px;
-            /* background-color: #fff; */
-        }
-        form input{
-            padding: 10px 30px;
-            box-shadow: 1px 1px 2px hsl(0, 0%, 52%);
-            border-radius: 5px;
-            border: none;
-            max-width: 100%;
-            width: 300px;
-        }
-        section select{
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 1px 1px 2px hsl(0, 0%, 52%);
-
-        }
-        .img-div{
-            width: 200px;
-            height: auto;
-        }
-        @media screen and (max-width:650px){
-            section{
-                display: block;
-            }
-            section form{
-                margin-bottom: 20px;
-            }
-            .contain{
-                padding: 20px 10px;
-            }
-            section.results{
-                display: block;
-            }
-            .img-div,form input{
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA==" crossorigin="anonymous">
+    <link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <nav class="contain">
         <h3>Where in the world?</h3>
-        <p class="dark-mode">Dark Mode</p>
+        <p class="dark-mode">
+            <i class="far fa-moon"></i>
+            <span> Dark Mode</span>
+        </p>
     </nav>
     <main>
         <section class="contain">
@@ -120,114 +30,11 @@
                <option value="oceania">Oceania</option>
             </select>
         </section>
-        <!-- <section class="results contain">
-
-        </section> -->
+        <aside class="preloader">
+            
+        </aside>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        let main = document.querySelector('main')
-        let form = document.querySelector('form')
-        let dark = document.querySelector('.dark-mode')
-        let selectRegion = document.querySelector('#filterSelect')
-        let results = document.createElement('section')
-        results.remove()
-
-        //search by region
-        selectRegion.addEventListener('change',async function(){
-            let region = this.value;
-            let result = await axios.get(`https://restcountries.eu/rest/v2/region/${region}`)
-            results.innerHTML = ' '
-        result.data.forEach(data =>{
-            parseCountry(data)
-        })
-        })
-        // dark.addEventListener('click',()=>{
-        //     document.querySelector('nav').classList.toggle('changeBg')
-        //     main.classList.toggle('changeBg')
-        // })
-       
-     
-        results.setAttribute('class'," results contain")
-        function createElements(element,value){
-               let spanFirst = document.createElement('span');
-               let spanSecond = document.createElement('span');
-               let p = document.createElement('p');
-               spanFirst.innerHTML = element;
-               spanSecond.innerHTML = value;
-               p.append(spanFirst,' ',spanSecond);
-           return p;
-
-        }
-    function parseCountry ({flag,name,population,region,capital}){
-              let mainDiv = document.createElement('div')
-               //flag
-               let img = document.createElement('img')
-               img.src = flag;
-               let imgDiv = document.createElement('div')
-               imgDiv.setAttribute('class',"img-div")
-               imgDiv.append(img)
-               //name
-               let header = document.createElement('h3')
-                 if(name.length > 20){
-                    // let names = 'United Kingdom of Great Britain and Northern Ireland'
-                    let newName = [...name.split(' ')]
-                    let adjustedName =  newName.splice(0,3)
-                    name = adjustedName.toString().split(',').join(' ') + ' ...'
-                 }
-               header.innerHTML = name;
-               //population
-               let popParent = createElements('population',population);
-               //region
-               let regionParent = createElements('region',region);
-               //capital
-               let capitalParent = createElements('capital',capital)
-            //   console.log(header.innerText, capitalParent.innerText)
-              let valueDiv = document.createElement('div')
-              valueDiv.append(header,popParent,regionParent,capitalParent)
-              valueDiv.setAttribute('class','value-div')
-              mainDiv.append(imgDiv,valueDiv);
-              mainDiv.setAttribute('class','results-div')
-              results.append(mainDiv)
-              main.append(results)
-        }
-        let searchCountry = async (input) =>{
-        try {
-            let result = await axios.get(`https://restcountries.eu/rest/v2/name/${input}`)
-           let data = result.data;
-           data.forEach(country => {
-            parseCountry(country)     
-         });
-        } catch (e) {
-            // console.log(e)
-            country = {
-                flag:'/error.jpg',
-                name:'N/A',
-                population:'N/A',
-                region:'N/A',
-                capital:'N/A'
-            }
-            parseCountry(country)
-            // console.log(country.name)
-        }
-        }
-        
-        
-        form.addEventListener('submit',function (e) {
-            e.preventDefault();
-            results.innerHTML = ' '
-            let input = this.querySelector('input').value;
-            searchCountry(input);
-        })
-        //default search on load
-      async function defaultLoad (){
-        let result = await axios.get('https://restcountries.eu/rest/v2/all')
-        // https://restcountries.eu/rest/v2/region/europe
-        result.data.forEach(data =>{
-            parseCountry(data)
-        })
-      }
-      defaultLoad()
-    </script>
+   <script src="/index.js"></script>
 </body>
 </html>
