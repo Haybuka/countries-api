@@ -18,11 +18,21 @@
         img{
             width: 100%;
         }
+        nav{
+            background-color: #fff;
+            box-shadow: 1px 1px 2px rgb(255, 0, 0);
+        }
+
+
+        .changeBg{
+            background-color:hsl(207, 26%, 17%) !important;
+            /* :hsl(209, 23%, 22%)  */
+            color: hsl(0, 0%, 100%) !important;
+        }
         nav,section{
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #fff;
         }
         section.results{
             display: flex;
@@ -31,7 +41,7 @@
             flex-wrap: wrap;
         }
         main{
-            background-color: hsl(0, 0%, 98%);
+            background-color:  hsl(0, 0%, 98%) !important;
             height: 100vh;
         }
         h3{
@@ -39,6 +49,9 @@
         }
         p{
             font-size: 14px;
+        }
+        p.dark-mode{
+            cursor: pointer;
         }
         .results-div{
             border: 1px solid black;
@@ -48,7 +61,7 @@
         }
         .value-div{
             padding: 10px 5px;
-            background-color: #fff;
+            /* background-color: #fff; */
         }
         form input{
             padding: 10px 30px;
@@ -82,7 +95,7 @@
             section.results{
                 display: block;
             }
-            .img-div{
+            .img-div,form input{
                 width: 100%;
             }
         }
@@ -91,7 +104,7 @@
 <body>
     <nav class="contain">
         <h3>Where in the world?</h3>
-        <p>Dark Mode</p>
+        <p class="dark-mode">Dark Mode</p>
     </nav>
     <main>
         <section class="contain">
@@ -115,6 +128,11 @@
     <script>
         let main = document.querySelector('main')
         let form = document.querySelector('form')
+        let dark = document.querySelector('.dark-mode')
+        dark.addEventListener('click',()=>{
+            document.querySelector('nav').classList.toggle('changeBg')
+            main.classList.toggle('changeBg')
+        })
         let results = document.createElement('section')
         results.remove()
      
