@@ -86,7 +86,7 @@ try {
 } catch (e) {
     //display none the preloader
     country = {
-        flag:'/error.jpg',
+        flag:'/image/error.jpg',
         name:input,
         population:'N/A',
         region:'N/A',
