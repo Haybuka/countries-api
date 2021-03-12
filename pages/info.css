@@ -78,6 +78,9 @@ section{
 display: block;
 }
 
+.fas.fa-long-arrow-alt-left{
+    margin-right: 10px;
+}
 
 a{
 color: inherit;
