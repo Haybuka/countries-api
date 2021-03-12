@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA==" crossorigin="anonymous">
     <link rel="stylesheet" href="/index.css">
     <style>
+        nav{
+            border-bottom: 2px solid rgba(32, 44, 55, 0.274);
+        }
         .loader {
   border: 10px solid #f3f3f3; /* Light grey */
   border-top: 10px solid #3498db; /* Blue */
@@ -38,17 +41,28 @@ h3{
     justify-content: space-between;
     align-items: center;
     box-shadow: none;
-    /* background-color: #fff; */
+    background-color: inherit;
 }
 main{
-    /* background-color: transparent; */
+    height: 100vh;
 }
+main p.contain{
+    padding: 60px 40px;
+}
+.contain{margin: 0;}
 section{
     display: block;
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+a{
+    color: inherit;
+    padding: 10px 15px;
+    background-color: var(--light-bg);
+    border-radius: 5px;
+    text-decoration: none;
 }
 @media screen and (max-width:1000px){
     .img-div{
@@ -61,6 +75,9 @@ section{
         padding: 0;
         margin: 25px 0;
     }
+    main p.contain{
+    padding: 60px 10px;
+}
 }
 
     </style>
@@ -73,7 +90,11 @@ section{
             <span> Dark Mode</span>
         </p>
     </nav>
+
     <main>
+        <p class="contain">
+            <a href="/index.html" class="back"> &lt; Back</a>
+        </p>
         <div class="loader"></div> 
 
     </main>

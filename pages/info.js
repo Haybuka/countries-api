@@ -96,8 +96,8 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
       valueDiv.setAttribute('class','value-div')
       mainDiv.append(imgDiv,valueDiv,rightDiv);
       mainDiv.setAttribute('class','results-div contain')
-      results.append(mainDiv)
-      main.append(results)
+    //   results.append(mainDiv)
+      main.append(mainDiv)
 }
 
 let searchCountry = async (input) =>{
