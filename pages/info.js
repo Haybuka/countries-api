@@ -35,18 +35,20 @@ function createElements(element,value){
 
 //getting country name from local storage
 let input = localStorage.getItem('country');
+//filter country based on code
+
+let countryCode = async (code) => {
+    let response = await axios.get(`https://restcountries.eu/rest/v2/alpha?codes=${code}`)
+    return response.data[0].name
+    }
+
 
 function parseCountry ({flag,name,population,region,capital,nativeName,subregion,topLevelDomain,currencies,languages,borders}){
     // let boundary = [...borders]
     let borderAside = document.createElement('aside')
     borderAside.innerText="Border Countries "
     borderAside.setAttribute('class','boundaries')
-    borders.forEach((border)=>{
-        let span = document.createElement('span');
-        borderAside.appendChild(span)
-        span.innerHTML = `${border} `
-        console.log(span.innerHTML)
-    })
+   
 
     let money = '';
     let language = '';
@@ -63,9 +65,16 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
         })
      }
      if(borders){
-        // borders.forEach((bound)=>{
-    //     border += ' ' + bound + ' '
-    // })
+        borders.forEach(async function(border){
+            let span = document.createElement('span');
+            borderAside.appendChild(span)
+            let values = await countryCode(`${border}`)
+            //split length of border
+            if(values.length>5){
+                values = values.split(' ')[0];
+            }
+            span.innerHTML = values;
+        })
      }
    
 
@@ -79,7 +88,6 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
        //name
        let header = document.createElement('h3')
          if(name.length > 20){
-            // let names = 'United Kingdom of Great Britain and Northern Ireland'
             let newName = [...name.split(' ')]
             let adjustedName =  newName.splice(0,3)
             name = adjustedName.toString().split(',').join(' ') + ' ...'
@@ -142,7 +150,7 @@ try {
         nativeName: 'N/A',
         subregion:'N/A',
         topLevelDomain : 'N/A',
-        borders:'N/A'
+    
 
     }
     parseCountry(country)
