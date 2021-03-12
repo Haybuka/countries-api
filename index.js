@@ -76,8 +76,13 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
             name = adjustedName.toString().split(',').join(' ') + ' ...'
          }
        header.innerHTML = name;
-       //population
-       let popParent = createElements('population',population);
+       //population and number formatter
+       let formatter = new Intl.NumberFormat('en-US', {
+
+    });
+    
+    let populations = formatter.format(population); 
+           let popParent = createElements('population',populations);
        //region
        let regionParent = createElements('region',region);
        //capital

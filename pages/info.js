@@ -100,7 +100,13 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
        let subReg = createElements('Sub Region',subregion);
      
        //population
-       let popParent = createElements('population',population);
+       
+let formatter = new Intl.NumberFormat('en-US', {
+
+});
+
+let populations = formatter.format(population); 
+       let popParent = createElements('population',populations);
        // money
        let moneyShow = createElements('currencies',money);
          // language
