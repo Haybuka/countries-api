@@ -37,7 +37,17 @@ function createElements(element,value){
 let input = localStorage.getItem('country');
 
 function parseCountry ({flag,name,population,region,capital,nativeName,subregion,topLevelDomain,currencies,languages,borders}){
- console.log(`${borders}`)
+    // let boundary = [...borders]
+    let borderAside = document.createElement('aside')
+    borderAside.innerText="Border Countries "
+    borderAside.setAttribute('class','boundaries')
+    borders.forEach((border)=>{
+        let span = document.createElement('span');
+        borderAside.appendChild(span)
+        span.innerHTML = `${border} `
+        console.log(span.innerHTML)
+    })
+
     let money = '';
     let language = '';
     let border = ''
@@ -102,7 +112,7 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
       rightDiv.append(topLevel,moneyShow,lingua)
       valueDiv.setAttribute('class','value-div')
       rightDiv.setAttribute('class','right-div')
-      mainDiv.append(imgDiv,valueDiv,rightDiv);
+      mainDiv.append(imgDiv,valueDiv,rightDiv,borderAside);
       mainDiv.setAttribute('class','results-div contain')
     //   results.append(mainDiv)
       main.append(mainDiv)
@@ -116,6 +126,7 @@ try {
     let data = result.data;
     data.forEach(country => {
     parseCountry(country)  
+    console.log(country)
     // console.log(country.name)
     // console.log(country.topLevelDomain)
  });
