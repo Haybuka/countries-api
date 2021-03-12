@@ -66,6 +66,7 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
        //flag and flag div handling
        let img = document.createElement('img')
        img.src = flag;
+       img.setAttribute('alt',`${name}`)
        let imgDiv = document.createElement('div')
        imgDiv.setAttribute('class',"img-div")
        imgDiv.append(img)

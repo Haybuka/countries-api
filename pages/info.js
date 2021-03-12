@@ -82,6 +82,7 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
        //flag
        let img = document.createElement('img')
        img.src = flag;
+       img.setAttribute('alt',`${name}`)
        let imgDiv = document.createElement('div')
        imgDiv.setAttribute('class',"img-div")
        imgDiv.append(img)
@@ -106,47 +107,49 @@ let formatter = new Intl.NumberFormat('en-US', {
 });
 
 let populations = formatter.format(population); 
-       let popParent = createElements('population',populations);
-       // money
-       let moneyShow = createElements('currencies',money);
-         // language
-       let lingua = createElements('languages',language);
-        
-        //  region
-       let regionParent = createElements('region',region);
-        //    top level
-       let topLevel = createElements('Top Level Domain',topLevelDomain);
-      
+     let popParent = createElements('population',populations);
+     // money
+     let moneyShow = createElements('currencies',money);
+     // language
+     let lingua = createElements('languages',language);     
+     //  region
+     let regionParent = createElements('region',region);
+     //    top level
+     let topLevel = createElements('Top Level Domain',topLevelDomain);     
      //  capital
-       let capitalParent = createElements('capital',capital)
-    //   console.log(header.innerText, capitalParent.innerText)
-      let valueDiv = document.createElement('div')
-      let rightDiv = document.createElement('div')
-      valueDiv.append(header,natName,popParent,regionParent,subReg,capitalParent)
-      rightDiv.append(topLevel,moneyShow,lingua)
-      valueDiv.setAttribute('class','value-div')
-      rightDiv.setAttribute('class','right-div')
-      mainDiv.append(imgDiv,valueDiv,rightDiv,borderAside);
-      mainDiv.setAttribute('class','results-div contain')
-    //   results.append(mainDiv)
-      main.append(mainDiv)
+     let capitalParent = createElements('capital',capital)
+       
+     let valueDiv = document.createElement('div')
+     let rightDiv = document.createElement('div')
+     valueDiv.append(header,natName,popParent,regionParent,subReg,capitalParent)
+     rightDiv.append(topLevel,moneyShow,lingua)
+     valueDiv.setAttribute('class','value-div')
+     rightDiv.setAttribute('class','right-div')
+     mainDiv.append(imgDiv,valueDiv,rightDiv,borderAside);
+     mainDiv.setAttribute('class','results-div contain')
+     //   results.append(mainDiv)
+     main.append(mainDiv)
 }
 
 let searchCountry = async (input) =>{
 try {
     let result = await axios.get(`https://restcountries.eu/rest/v2/name/${input}`)
+    
     //display none the preloader
     loader.classList.add('display')
+
+    //render data
     let data = result.data;
     data.forEach(country => {
     parseCountry(country)  
-    console.log(country)
-    // console.log(country.name)
-    // console.log(country.topLevelDomain)
+
  });
 } catch (e) {
+
     //display none the preloader
     loader.classList.add('display')
+
+    //data incase of wrong input,network error
     country = {
         flag:'/image/error.jpg',
         name:input,
