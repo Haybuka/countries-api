@@ -180,5 +180,3 @@ result.data.forEach(async function(data){
 }
 defaultLoad();
 
-//load animate on scroll
-AOS.init();

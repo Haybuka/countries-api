@@ -168,4 +168,3 @@ try {
  }
 }
 searchCountry(input)
-AOS.init();
