@@ -99,6 +99,9 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
        valueDiv.setAttribute('class','value-div')
        mainDiv.append(imgDiv,valueDiv);
        mainDiv.setAttribute('class','results-div')
+       mainDiv.setAttribute("data-aos","fade-up");
+       mainDiv.setAttribute("data-aos-duration","1200");
+       results.setAttribute("data-aos","fade-down");
        results.append(mainDiv)
        main.append(results)
 }
@@ -176,3 +179,6 @@ result.data.forEach(async function(data){
 })
 }
 defaultLoad();
+
+//load animate on scroll
+AOS.init();

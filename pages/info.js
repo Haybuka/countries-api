@@ -125,6 +125,8 @@ let populations = formatter.format(population);
      rightDiv.append(topLevel,moneyShow,lingua)
      valueDiv.setAttribute('class','value-div')
      rightDiv.setAttribute('class','right-div')
+     mainDiv.setAttribute("data-aos","fade-up");
+       results.setAttribute("data-aos","fade-down");
      mainDiv.append(imgDiv,valueDiv,rightDiv,borderAside);
      mainDiv.setAttribute('class','results-div contain')
      //   results.append(mainDiv)
@@ -166,3 +168,4 @@ try {
  }
 }
 searchCountry(input)
+AOS.init();
