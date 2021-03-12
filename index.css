@@ -15,6 +15,28 @@
             --dark-text: hsl(0, 0%, 100%);
             --main-bg:hsl(0, 0%, 91.8%);
         }
+        .loader {
+            border: 10px solid #f3f3f3; /* Light grey */
+            border-top: 10px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            margin-top: 100px;
+            }
+            
+            .loader.display{
+            display: none;
+            }
+            
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+    }
         .contain{
             padding: 15px 40px;
             /* background-color: var(--dark-blue); */

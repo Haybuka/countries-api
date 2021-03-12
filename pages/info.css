@@ -3,23 +3,7 @@ nav{
     border-bottom: 2px solid rgba(32, 44, 55, 0.274);
 }
 
-.loader {
-border: 10px solid #f3f3f3; /* Light grey */
-border-top: 10px solid #3498db; /* Blue */
-border-radius: 50%;
-width: 50px;
-height: 50px;
-animation: spin 1s linear infinite;
-position: absolute;
-top: 0%;
-left: 50%;
-transform: translate(-50%,-50%);
-margin-top: 100px;
-}
 
-.loader.display{
-display: none;
-}
 
 p span:nth-child(1){
 font-weight: 600;
@@ -94,10 +78,6 @@ section{
 display: block;
 }
 
-@keyframes spin {
-0% { transform: rotate(0deg); }
-100% { transform: rotate(360deg); }
-}
 
 a{
 color: inherit;
