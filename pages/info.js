@@ -37,7 +37,7 @@ function createElements(element,value){
 let input = localStorage.getItem('country');
 
 function parseCountry ({flag,name,population,region,capital,nativeName,subregion,topLevelDomain,currencies,languages,borders}){
- console.log(`${flag}, ${name}, ${population},${region},${capital},${nativeName},${subregion},${topLevelDomain},${currencies},${languages},${borders}`)
+ console.log(`${borders}`)
     let money = '';
     let language = '';
     let border = ''
