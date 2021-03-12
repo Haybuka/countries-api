@@ -101,6 +101,7 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
       valueDiv.append(header,natName,popParent,regionParent,subReg,capitalParent)
       rightDiv.append(topLevel,moneyShow,lingua)
       valueDiv.setAttribute('class','value-div')
+      rightDiv.setAttribute('class','right-div')
       mainDiv.append(imgDiv,valueDiv,rightDiv);
       mainDiv.setAttribute('class','results-div contain')
     //   results.append(mainDiv)
