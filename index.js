@@ -4,7 +4,6 @@ let dark = document.querySelector('.dark-mode')
 let selectRegion = document.querySelector('#filterSelect')
 let results = document.createElement('section')
 results.remove()
-
 //search by region
 selectRegion.addEventListener('change',async function(){
     let region = this.value;
@@ -12,6 +11,16 @@ selectRegion.addEventListener('change',async function(){
     results.innerHTML = ' '
 result.data.forEach(data =>{
     parseCountry(data)
+    let resultsDiv = [...document.querySelectorAll('.results-div')];
+   resultsDiv.forEach(div=>{
+     div.addEventListener('click',function (e){
+        let chosenDiv = e.target.parentElement.parentElement;
+        let countryName = chosenDiv.querySelector('h3').innerHTML;
+        // console.log(countryName)
+        window.open("/pages/info.html",'_blank');
+        localStorage.setItem('country',`${countryName}`);
+     })
+   })
 })
 })
 dark.addEventListener('click',(e)=>{
@@ -33,6 +42,7 @@ dark.addEventListener('click',(e)=>{
 
 
 results.setAttribute('class'," results contain")
+
 function createElements(element,value){
        let spanFirst = document.createElement('span');
        let spanSecond = document.createElement('span');
@@ -43,7 +53,29 @@ function createElements(element,value){
    return p;
 
 }
-function parseCountry ({flag,name,population,region,capital}){
+
+function parseCountry ({flag,name,population,region,capital,nativeName,subregion,topLevelDomain,currencies,languages,borders}){
+    // console.log(`nativeName : ${nativeName}, subregion : ${subregion}`)
+
+    let money = '';
+    let language = '';
+    let border = ''
+    let domains = ''
+    topLevelDomain.forEach((domain)=>{
+        domains +=  ' ' + domain + ' '
+     })
+     currencies.forEach((currency)=>{
+         money +=  ' ' + currency.name + ' '
+     })
+     languages.forEach((speaks)=>{
+        language += ' ' + speaks.name + ' '
+    })
+    borders.forEach((bound)=>{
+        border += ' ' + bound + ' '
+
+    })
+// console.log(`native name : ${nativeName} ,domain : ${domains} , currency : ${money}, language : ${language}, border : ${border}, subregion : ${subregion}`)
+      
       let mainDiv = document.createElement('div')
        //flag
        let img = document.createElement('img')
@@ -82,6 +114,7 @@ try {
     let data = result.data;
     data.forEach(country => {
     parseCountry(country)     
+    // console.log(country)
  });
 } catch (e) {
     //display none the preloader
@@ -97,19 +130,41 @@ try {
 }
 
 
-form.addEventListener('submit',function (e) {
+form.addEventListener('submit',async function (e) {
     e.preventDefault();
     results.innerHTML = ' '
     let input = this.querySelector('input').value;
-
-    searchCountry(input);
-    //display block the preloader
+    
+    await searchCountry(input);
+  //adapting the windows open on the form search
+  let resultsDiv = [...document.querySelectorAll('.results-div')];
+   resultsDiv.forEach(div=>{
+     div.addEventListener('click',function (e){
+        let chosenDiv = e.target.parentElement.parentElement;
+        let countryName = chosenDiv.querySelector('h3').innerHTML;
+        // console.log(countryName)
+        window.open("/pages/info.html",'_blank');
+        localStorage.setItem('country',`${countryName}`);
+     })
+   })
 })
 //default search on load
 async function defaultLoad (){
 let result = await axios.get('https://restcountries.eu/rest/v2/all')
-result.data.forEach(data =>{
-    parseCountry(data)
+result.data.forEach(async function(data){
+    await parseCountry(data)
+    //adapting the windows open on page load
+   let resultsDiv = [...document.querySelectorAll('.results-div')];
+   resultsDiv.forEach(div=>{
+     div.addEventListener('click',function (e){
+        let chosenDiv = e.target.parentElement.parentElement;
+        let countryName = chosenDiv.querySelector('h3').innerHTML;
+        // console.log(countryName)
+        window.open("/pages/info.html",'_blank');
+        localStorage.setItem('country',`${countryName}`);
+     })
+   })
+   
 })
 }
-defaultLoad()
+defaultLoad();

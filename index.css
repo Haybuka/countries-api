@@ -98,6 +98,7 @@
             margin: 15px;
             overflow: hidden;
             background-color: var(--light-bg);
+            cursor: pointer;
         }
         .value-div{
             padding: 10px;
@@ -107,7 +108,7 @@
         }
         form i{
             position: absolute;
-            top: 13px;
+            top: 12px;
             left: 10px;
             color: var(--light-text);
         }
