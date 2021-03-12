@@ -57,23 +57,7 @@ function createElements(element,value){
 function parseCountry ({flag,name,population,region,capital,nativeName,subregion,topLevelDomain,currencies,languages,borders}){
     // console.log(`nativeName : ${nativeName}, subregion : ${subregion}`)
 
-    let money = '';
-    let language = '';
-    let border = ''
-    let domains = ''
-    topLevelDomain.forEach((domain)=>{
-        domains +=  ' ' + domain + ' '
-     })
-     currencies.forEach((currency)=>{
-         money +=  ' ' + currency.name + ' '
-     })
-     languages.forEach((speaks)=>{
-        language += ' ' + speaks.name + ' '
-    })
-    borders.forEach((bound)=>{
-        border += ' ' + bound + ' '
-
-    })
+   
 // console.log(`native name : ${nativeName} ,domain : ${domains} , currency : ${money}, language : ${language}, border : ${border}, subregion : ${subregion}`)
       
       let mainDiv = document.createElement('div')

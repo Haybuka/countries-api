@@ -42,15 +42,22 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
     let language = '';
     let border = ''
     let domains = ''
-     currencies.forEach((currency)=>{
-         money +=  ' ' + currency.name + ' '
-     })
-     languages.forEach((speaks)=>{
-        language += ' ' + speaks.name + ' ,'
-    })
-    // borders.forEach((bound)=>{
+     if(currencies){
+        currencies.forEach((currency)=>{
+            money +=  ' ' + currency.name + ' '
+        })
+     }
+     if(languages){
+        languages.forEach((speaks)=>{
+            language += ' ' + speaks.name + ' ,'
+        })
+     }
+     if(borders){
+        // borders.forEach((bound)=>{
     //     border += ' ' + bound + ' '
     // })
+     }
+   
 
       let mainDiv = document.createElement('div')
        //flag
@@ -119,7 +126,12 @@ try {
         name:input,
         population:'N/A',
         region:'N/A',
-        capital:'N/A'
+        capital:'N/A',
+        nativeName: 'N/A',
+        subregion:'N/A',
+        topLevelDomain : 'N/A',
+        borders:'N/A'
+
     }
     parseCountry(country)
  }
