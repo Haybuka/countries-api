@@ -42,7 +42,8 @@ dark.addEventListener('click',(e)=>{
 })
 
 
-results.setAttribute('class'," results contain")
+// results.setAttribute('class'," results contain")
+results.setAttribute('class'," results")
 
 //function to create elements
 
@@ -52,7 +53,8 @@ function createElements(element,value){
        let p = document.createElement('p');
        spanFirst.innerHTML = element;
        spanSecond.innerHTML = value;
-       p.append(spanFirst,' ',spanSecond);
+    //    p.append(spanFirst,' ',spanSecond);
+       p.append(spanSecond);
    return p;
 
 }
@@ -178,5 +180,5 @@ result.data.forEach(async function(data){
    
 })
 }
-defaultLoad();
+// defaultLoad();
 
