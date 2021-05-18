@@ -19,9 +19,8 @@ result.data.forEach(data =>{
      div.addEventListener('click',function (e){
         let chosenDiv = e.target.parentElement.parentElement;
         let countryName = chosenDiv.querySelector('h3').innerHTML;
-        // console.log(countryName)
         window.open("/pages/info.html");
-        // localStorage.setItem('country',`${countryName}`);
+        localStorage.setItem('country',`${countryName}`);
      })
    })
 })
@@ -159,7 +158,7 @@ form.addEventListener('submit',async function (e) {
         let countryName = chosenDiv.querySelector('h3').innerHTML;
 
        //open new window on click
-        window.open("/pages/info.html");
+        window.open("/pages/info.html",'_blank');
 
         //closes the previous tab
         setTimeout(() => {
