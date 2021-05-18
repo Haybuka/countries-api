@@ -160,7 +160,7 @@ form.addEventListener('submit',async function (e) {
 })
 
 
-//Display results on load 
+//Display results on page load 
 
 async function defaultLoad (){
 let result = await axios.get('https://restcountries.eu/rest/v2/all')
@@ -181,5 +181,6 @@ result.data.forEach(async function(data){
    
 })
 }
+//call page load data,uncomment to have all displayed at once
 // defaultLoad();
 

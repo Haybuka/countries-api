@@ -38,6 +38,15 @@
             width: 50px;
             height: 50px;
         }
+        .results-div.header{
+            box-shadow: none;
+            background: transparent;
+        }
+        @media screen and (max-width:650px){
+            section select{
+                display: none;
+            }
+        }
         @media screen and (max-width:1000px){
             .container{
                 width: auto;
@@ -71,7 +80,7 @@
             </select>
         </section>
         <div class="loader display"></div> 
-        <div class="results-div " data-aos="fade-up" data-aos-duration="1200">
+        <div class="results-div header" data-aos="fade-up" data-aos-duration="1200">
             <div class="img-div">
                 <h3>Flag</h3>
             </div>
