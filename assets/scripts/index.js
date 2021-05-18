@@ -158,11 +158,11 @@ form.addEventListener('submit',async function (e) {
         let countryName = chosenDiv.querySelector('h3').innerHTML;
 
        //open new window on click
-        window.open("/pages/info.html",'_blank');
+        window.open("/assets/pages/info.html",'_blank');
 
         //closes the previous tab
         setTimeout(() => {
-          window.close("/pages/info.html");
+          window.close("/assets/pages/info.html");
         }, 5000);
     
         localStorage.setItem('country',`${countryName}`);
