@@ -11,7 +11,8 @@ selectRegion.addEventListener('change',async function(){
     let result = await axios.get(`https://restcountries.eu/rest/v2/region/${region}`)
     results.innerHTML = ' '
 result.data.forEach(data =>{
-    parseCountry(data)
+    parseCountry(data);
+    main.style.height = 'auto'
     let resultsDiv = [...document.querySelectorAll('.results-div')];
    resultsDiv.forEach(div=>{
      div.addEventListener('click',function (e){
@@ -117,7 +118,7 @@ try {
     let result = await axios.get(`https://restcountries.eu/rest/v2/name/${input}`)
     //display none the preloader
     loader.classList.add('display')
-
+   main.style.height = "100vh"
     let data = result.data;
     data.forEach(country => {
     parseCountry(country)     
