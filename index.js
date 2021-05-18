@@ -19,16 +19,20 @@ result.data.forEach(data =>{
         let chosenDiv = e.target.parentElement.parentElement;
         let countryName = chosenDiv.querySelector('h3').innerHTML;
         // console.log(countryName)
-        window.open("/pages/info.html",'_blank');
-        localStorage.setItem('country',`${countryName}`);
+        window.open("/pages/info.html");
+        // localStorage.setItem('country',`${countryName}`);
      })
    })
 })
 })
 dark.addEventListener('click',(e)=>{
+    let darkModeState = false;
+
+    localStorage.setItem('mode',darkModeState)
     let icon = dark.querySelector('i');
     let roots = document.querySelector(':root');
     if(icon.className.includes('far')){
+
         icon.setAttribute('class','fas fa-moon');
         document.documentElement.style.setProperty('--light-bg', 'hsl(209, 23%, 22%)');
         document.documentElement.style.setProperty('--main-bg', 'hsl(207, 26%, 17%)');
@@ -118,7 +122,7 @@ try {
     let result = await axios.get(`https://restcountries.eu/rest/v2/name/${input}`)
     //display none the preloader
     loader.classList.add('display')
-   main.style.height = "100vh"
+    main.style.height = "100vh"
     let data = result.data;
     data.forEach(country => {
     parseCountry(country)     
@@ -127,6 +131,7 @@ try {
     //display none the preloader
     loader.classList.add('display')
 
+    //data for failed searches 
     country = {
         flag:'/image/error.jpg',
         name:input,
@@ -152,8 +157,14 @@ form.addEventListener('submit',async function (e) {
      div.addEventListener('click',function (e){
         let chosenDiv = e.target.parentElement.parentElement;
         let countryName = chosenDiv.querySelector('h3').innerHTML;
-        // console.log(countryName)
-        window.open("/pages/info.html",'_blank');
+
+       //open new window on click
+        window.open("/pages/info.html");
+        
+        //closes the previous tab
+        setTimeout(() => {
+          window.close("/pages/info.html");
+        }, 5000);
         localStorage.setItem('country',`${countryName}`);
      })
    })
@@ -174,8 +185,8 @@ result.data.forEach(async function(data){
         let chosenDiv = e.target.parentElement.parentElement;
         let countryName = chosenDiv.querySelector('h3').innerHTML;
         // console.log(countryName)
-        window.open("/pages/info.html",'_blank');
-        localStorage.setItem('country',`${countryName}`);
+        // window.open("/pages/info.html",'_blank');
+        // localStorage.setItem('country',`${countryName}`);
      })
    })
    
