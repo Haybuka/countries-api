@@ -4,6 +4,7 @@ let dark = document.querySelector('.dark-mode')
 let selectRegion = document.querySelector('#filterSelect')
 let loader = document.querySelector('.loader')
 let results = document.createElement('section')
+let darkMode = false;
 results.remove()
 //search by region
 selectRegion.addEventListener('change',async function(){
@@ -26,9 +27,8 @@ result.data.forEach(data =>{
 })
 })
 dark.addEventListener('click',(e)=>{
-    let darkModeState = false;
-
-    localStorage.setItem('mode',darkModeState)
+    darkMode = !darkMode;
+    console.log(darkMode)
     let icon = dark.querySelector('i');
     let roots = document.querySelector(':root');
     if(icon.className.includes('far')){
@@ -122,7 +122,7 @@ try {
     let result = await axios.get(`https://restcountries.eu/rest/v2/name/${input}`)
     //display none the preloader
     loader.classList.add('display')
-    main.style.height = "100vh"
+    main.style.height = "80vh"
     let data = result.data;
     data.forEach(country => {
     parseCountry(country)     
@@ -160,11 +160,12 @@ form.addEventListener('submit',async function (e) {
 
        //open new window on click
         window.open("/pages/info.html");
-        
+
         //closes the previous tab
         setTimeout(() => {
           window.close("/pages/info.html");
         }, 5000);
+    
         localStorage.setItem('country',`${countryName}`);
      })
    })
@@ -195,3 +196,4 @@ result.data.forEach(async function(data){
 //call page load data,uncomment to have all displayed at once
 // defaultLoad();
 
+AOS.init();
