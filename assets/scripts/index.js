@@ -81,9 +81,9 @@ function parseCountry ({flag,name,population,region,capital,nativeName,subregion
        let header = document.createElement('h3')
 
        //shortens country name to fit box
-         if(name.length > 15){
+         if(name.length > 16){
             let newName = [...name.split(' ')]
-            let adjustedName =  newName.splice(0,3)
+            let adjustedName =  newName.splice(0,2)
             name = adjustedName.toString().split(',').join(' ') + ' ...'
          }
        header.innerHTML = name;
