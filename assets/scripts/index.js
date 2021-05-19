@@ -5,7 +5,9 @@ let selectRegion = document.querySelector('#filterSelect')
 let loader = document.querySelector('.loader')
 let results = document.createElement('section')
 let darkMode = false;
+
 results.remove()
+
 //search by region
 selectRegion.addEventListener('change',async function(){
     let region = this.value;
