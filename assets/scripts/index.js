@@ -19,7 +19,7 @@ result.data.forEach(data =>{
      div.addEventListener('click',function (e){
         let chosenDiv = e.target.parentElement.parentElement;
         let countryName = chosenDiv.querySelector('h3').innerHTML;
-        window.open("/pages/info.html");
+        window.open("/assets/pages/info.html");
         localStorage.setItem('country',`${countryName}`);
      })
    })
